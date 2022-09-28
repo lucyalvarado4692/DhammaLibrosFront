@@ -2,41 +2,83 @@
 
 <template>
   <main>
-    <div id="controls-carousel" class="relative" data-carousel="static">
-      <!-- Carousel wrapper -->
-      <div class="relative h-56 overflow-hidden rounded-lg md:h-96" id="slider">
-        <figure
-          class="duration-1500 ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10"
+    <div id="default-carousel" class="relative" data-carousel="static">
+      <div class="relative h-56 overflow-hidden md:h-96">
+        <div
+          class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20"
           data-carousel-item=""
         >
-          <a href="#">
-            <img
-              src="https://efeagro.com/wp-content/uploads/2022/06/backlit-beach-dawn-588561.jpg"
-              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 p-0"
-              alt="..."
-            />
-          </a>
-          <figcaption class="absolute w-full bottom-6 px-4 text-xl text-white">
-            <h2 class="text-2xl ml-8"></h2>
-            <div class="flex w-full justify-between">
-              <p class="ml-8"></p>
-              <p class="mr-8">places</p>
-            </div>
-          </figcaption>
-        </figure>
+          <span
+            class="absolute text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:text-3xl dark:text-gray-800"
+            >First Slide</span
+          >
+          <img
+            src="./img/libro.jpg"
+            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            alt="..."
+          />
+        </div>
+
+        <div
+          class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10"
+          data-carousel-item=""
+        >
+          <img
+            src="https://galiciangarden.com/wp-content/uploads/plantas_medicinales_jard%C3%ADn_galiciangarden_4.jpg"
+            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            alt="..."
+          />
+        </div>
+
+        <div
+          class="duration-700 ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10"
+          data-carousel-item=""
+        >
+          <img
+            src="https://img.freepik.com/fotos-premium/modelos-acupuntura-libros-medicina-estan-sobre-mesa-acupuntura-es-metodo-medico-tradicional-chino_1112-9411.jpg?w=2000"
+            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            alt="..."
+          />
+        </div>
       </div>
-      <!-- Slider controls -->
+
+      <div
+        class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2"
+      >
+        <button
+          type="button"
+          class="w-3 h-3 rounded-full bg-white dark:bg-gray-800"
+          aria-current="true"
+          aria-label="Slide 1"
+          data-carousel-slide-to="0"
+        ></button>
+        <button
+          type="button"
+          class="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800"
+          aria-current="false"
+          aria-label="Slide 2"
+          data-carousel-slide-to="1"
+        ></button>
+        <button
+          type="button"
+          class="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800"
+          aria-current="false"
+          aria-label="Slide 3"
+          data-carousel-slide-to="2"
+        ></button>
+      </div>
+
       <button
         type="button"
         class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
         data-carousel-prev=""
       >
         <span
-          class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+          class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
         >
           <svg
             aria-hidden="true"
-            class="w-6 h-6 text-white dark:text-gray-800"
+            class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -58,11 +100,11 @@
         data-carousel-next=""
       >
         <span
-          class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+          class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
         >
           <svg
             aria-hidden="true"
-            class="w-6 h-6 text-white dark:text-gray-800"
+            class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

@@ -11,7 +11,7 @@ import { RouterLink, RouterView } from "vue-router";
       >
         <a href="#" class="flex items-center">
           <img
-            src="../assets/img/holistico.png"
+            src="./img/holistico.png"
             class="mr-3 h-6 sm:h-9"
             alt="Medicina Holistica"
           />

@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 <template>
   <footer
-    class="p-4 bg-yellow-900 md:flex md:items-center md:justify-between md:p-6 dark:bg-yellow-900"
+    class="p-4 bg-yellow-900 h-16 flex justify-between items-center md:flex md:items-center md:justify-between md:p-6 dark:bg-yellow-900"
   >
     <span class="text-sm text-white sm:text-center dark:text-white">
       <a href="https://github.com/lucyalvarado4692" class="hover:underline"
@@ -11,7 +11,7 @@ import { RouterLink, RouterView } from "vue-router";
       >
     </span>
     <ul
-      class="flex flex-wrap items-center mt-3 text-sm text-white dark:text-white sm:mt-0"
+      class="flex flex-nowrap items-center text-sm text-white dark:text-white sm:mt-0"
     >
       <li>
         <a href="#" class="mr-4 hover:underline md:mr-6"
