@@ -47,7 +47,6 @@ export default {
     destroy() {
       this.bookService.destroy(this.book.id).then((data) => {
         if (data.status === 200) {
-          console.log("listo, eliminado");
           return "/";
         }
       });
@@ -57,7 +56,7 @@ export default {
 </script>
 <template>
   <div class="relative">
-    <a href="">
+    <!-- <a href="">
       <button class="absolute p-1 w-full flex justify-end" type="button">
         <img
           src="https://cdn-icons-png.flaticon.com/512/6684/6684701.png"
@@ -65,7 +64,7 @@ export default {
           class="w-7 h-auto items-center p-0"
         />
       </button>
-    </a>
+    </a> -->
     <a href="">
       <img class="rounded-t-lg p-0" :src="img" alt="" />
     </a>
@@ -93,16 +92,6 @@ export default {
         Añadir al carrito
       </a>
       <a href="">
-        <button
-          type="button"
-          class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-1 dark:bg-green-800 dark:hover:bg-blue-700 dark:focus:ring-green-800"
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3601/3601685.png"
-            alt="edit event"
-            class="w-5 h-auto p-0"
-          />
-        </button>
       </a>
       <form @submit.prevent="destroy">
         <button
