@@ -1,30 +1,17 @@
 <script>
-import BookService from "../service/BookService";
 export default {
   name: "CardBook",
-  props: {
-    props: ["bookShow"],
-  },
-  data() {
-    return {
-      book: "",
-    };
-  },
-  bookService: null,
-  updated() {
-    console.log("me ejecuta update");
-      this.bookService = new BookService();
-      this.id = this.bookShow.id;
-      this.show(this.id);
-  },
-  methods: {
-    show() {
-      this.bookService.show(this.id).then((data) => {
-        this.book = data.data;
-        console.log(this.book);
-        console.log("me coge el dato");
-      });
-    },
+  props: ["bookShow"],
+  mounted() {
+    if (this.bookShow != "") {
+      this.book.id = this.bookShow.id;
+      this.book.title = this.bookShow.title;
+      this.book.author = this.bookShow.author;
+      this.book.description = this.bookShow.description;
+      this.book.img = this.bookShow.img;
+      this.book.year = this.bookShow.year;
+      this.book.price = this.bookShow.price;
+    }
   },
 };
 </script>
@@ -40,7 +27,7 @@ export default {
       </button>
     </a>
     <a href="">
-      <img class="rounded-t-lg p-0" :src="book.img" alt="" />
+      <img class="rounded-t-lg p-0" alt="" />
     </a>
   </div>
   <div class="d-flex flex-column justify-content-end p-3">

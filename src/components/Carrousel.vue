@@ -17,6 +17,14 @@
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
+          <figcaption
+            class="absolute w-full bottom-6 px-10 py-4 text-xl text-white"
+          >
+            <p>
+              Dhamma Libros, tu colección de libros sobre medicina natural para
+              el cuerpo, mente y espiritu
+            </p>
+          </figcaption>
         </div>
 
         <div
@@ -28,6 +36,14 @@
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
+          <figcaption
+            class="absolute w-full bottom-6 px-10 py-4 text-xl text-white"
+          >
+            <p>
+              Bienvenido a nuestro sitio web, aca encontraras libros con todo lo
+              relacionado a la medicina natural y alternativa
+            </p>
+          </figcaption>
         </div>
 
         <div
@@ -39,6 +55,15 @@
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
+          <figcaption
+            class="absolute w-full bottom-6 px-10 py-4 text-xl text-white"
+          >
+            <p>
+              Encontraras lo que buscas y necesitas para sanacion de cuerpo
+              mente, alma y espiritu
+            </p>
+            <p>Namaste, mi alma saluda a tu alma</p>
+          </figcaption>
         </div>
       </div>
 

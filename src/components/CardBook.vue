@@ -56,7 +56,7 @@ export default {
 </script>
 <template>
   <div class="relative">
-    <!-- <a href="">
+    <a href="">
       <button class="absolute p-1 w-full flex justify-end" type="button">
         <img
           src="https://cdn-icons-png.flaticon.com/512/6684/6684701.png"
@@ -64,7 +64,7 @@ export default {
           class="w-7 h-auto items-center p-0"
         />
       </button>
-    </a> -->
+    </a>
     <a href="">
       <img class="rounded-t-lg p-0" :src="img" alt="" />
     </a>
@@ -91,20 +91,7 @@ export default {
       >
         Añadir al carrito
       </a>
-      <a href="">
-      </a>
-      <form @submit.prevent="destroy">
-        <button
-          type="submit"
-          class="focus:outline-none bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-2 py-2 mr-1 dark:bg-red-600 dark:hover:bg-blue-700 dark:focus:ring-red-900"
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
-            alt="delete event"
-            class="w-5 h-auto p-0"
-          />
-        </button>
-      </form>
+
     </div>
   </div>
 </template>

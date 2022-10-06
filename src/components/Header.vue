@@ -11,15 +11,20 @@ import { RouterLink, RouterView } from "vue-router";
       >
         <a href="#" class="flex items-center">
           <img
-            src="./img/holistico.png"
+            src="./img/libro.png"
             class="mr-3 h-6 sm:h-9"
             alt="Medicina Holistica"
           />
           <span
-            class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-            >Libreria Med Holistic</span
+            class="self-center text-xl font-semibold whitespace-nowrap text-white"
+            >Dhamma Libros</span
           >
         </a>
+        <div>
+          <p class="text-white font-mono">
+            Tu librería especializada en Medicina Natural
+          </p>
+        </div>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -58,7 +63,7 @@ import { RouterLink, RouterView } from "vue-router";
             <li>
               <a
                 href="#"
-                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-orange-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-orange-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                class="block py-2 pr-4 pl-3 text-white rounded hover:bg-orange-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-orange-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 ><RouterLink to="/shoppingcart">Shopping Cart</RouterLink></a
               >
             </li>

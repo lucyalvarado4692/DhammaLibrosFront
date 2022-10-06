@@ -9,16 +9,8 @@ export default {
     return {
       books: null,
       book: "",
+      bookShow: "",
       bookIndex: 0,
-      /* book: {
-        id: null,
-        title: null,
-        author: null,
-        description: null,
-        img: null,
-        year: null,
-        price: null,
-      }, */
     };
   },
   bookService: null,
@@ -36,7 +28,7 @@ export default {
       });
     },
 
-    /* save() {
+    save() {
       this.bookService.save(this.book).then((data) => {
         if (data.status === 200) {
           (this.book = {
@@ -50,7 +42,8 @@ export default {
             this.getAll();
           return "/";
         }
-      }); */
+      });
+    },
     bookInsert: function (book) {
       console.log(book);
       this.books.push(book);
@@ -68,23 +61,19 @@ export default {
       this.books[this.bookIndex].year = book.year;
       this.books[this.bookIndex].price = book.price;
     },
-    bookShow: function (id) {
-      this.id = id;
-      console.log("show")
-    }
+    destroy(book) {
+      this.bookService.destroy(book.id).then((data) => {
+        if (data.status === 200) {
+          this.getAll();
+          return "/";
+        }
+      });
+    },
   },
 };
 </script>
 
 <template>
-  <!-- 
-  <button
-    class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    type="button"
-    data-modal-toggle="add-modal"
-  >
-    Añadir a Colección
-  </button>
   <div
     id="add-modal"
     tabindex="-1"
@@ -228,33 +217,22 @@ export default {
         </div>
       </div>
     </div>
-  </div> -->
-  <div class="flex item-center m-4">
+  </div>
+  -->
+  <section class="m-6 grid justify-items-center text-2xl">
+    <h1 class="font-serif text-xl font-bold m-6">COLECCIÓN DE LIBROS</h1>
+  </section>
+  <div class="flex item-center m-4 text-center">
     <button
       type="button"
-      class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-1 dark:bg-green-800 dark:hover:bg-blue-700 dark:focus:ring-green-800"
+      class="font-medium px-2 py-2 mr-1"
       @click="book = ''"
+      data-modal-toggle="add-modal"
     >
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/29/29809.png"
-        alt="edit event"
-        class="w-5 h-auto p-0"
-      />
+      <img src="./img/agregar.png" alt="edit event" class="w-10 h-auto p-0" />
     </button>
-    <p class="m-2 text-lg">Agregar nuevo libro</p>
+    <p class="m-2 text-lg">Añadir a la Colección</p>
   </div>
-
-  <h1>This is an Listbook</h1>
-  <SaveBook
-    :key="book"
-    :bookUpdate="book"
-    :bookEdit="book"
-    @bookInsert="bookInsert"
-    @bookUpdate="bookUpdate"
-  />
-
-  <ShowBook  :bookShow="book" />
-
   <div id="box" class="grid md:grid-cols-4 justify-items-center m-2">
     <div
       class="d-flex flex-column justify-content-between w-72 m-4 bg-white rounded-lg border border-gray-200 shadow-md dark:border-gray-700 mb-4"
@@ -271,14 +249,6 @@ export default {
         :year="book.year"
         :book="book"
       />
-      <button class="p-1" type="button" @click="bookShow(id)">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/6684/6684701.png"
-          alt="information"
-          class="w-7 h-auto items-center p-0"
-        />
-        Ver libro
-      </button>
       <button
         type="button"
         class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-1 dark:bg-green-800 dark:hover:bg-blue-700 dark:focus:ring-green-800"
@@ -290,8 +260,27 @@ export default {
           class="w-5 h-auto p-0"
         />
       </button>
+      <form @submit.prevent="destroy(book)">
+        <button
+          type="submit"
+          class="focus:outline-none bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-2 py-2 mr-1 dark:bg-red-600 dark:hover:bg-blue-700 dark:focus:ring-red-900"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
+            alt="delete event"
+            class="w-5 h-auto p-0"
+          />
+        </button>
+      </form>
     </div>
   </div>
+  <SaveBook
+    :key="book"
+    :bookUpdate="book"
+    :bookEdit="book"
+    @bookInsert="bookInsert"
+    @bookUpdate="bookUpdate"
+  />
 </template>
 
 <style scoped>
