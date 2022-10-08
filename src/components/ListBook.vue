@@ -8,7 +8,15 @@ export default {
   data() {
     return {
       books: null,
-      book: "",
+      book:"",
+      bookAdd: {
+        title: null,
+        author: null,
+        description: null,
+        img: null,
+        year: null,
+        price: null,
+      },
       bookShow: "",
       bookIndex: 0,
     };
@@ -27,19 +35,11 @@ export default {
         this.books = data.data;
       });
     },
-
-    save() {
-      this.bookService.save(this.book).then((data) => {
+    create() {
+      this.bookService.save(this.bookAdd).then((data) => {
         if (data.status === 200) {
-          (this.book = {
-            title: null,
-            author: null,
-            description: null,
-            img: null,
-            year: null,
-            price: null,
-          }),
-            this.getAll();
+          console.log(this.bookAdd)
+          this.getAll();
           return "/";
         }
       });
@@ -106,7 +106,7 @@ export default {
           <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
             Agregar libro
           </h3>
-          <form @submit.prevent="save" class="space-y-6">
+          <form @submit.prevent="create" class="space-y-6">
             <div>
               <label
                 for="title"
@@ -118,7 +118,7 @@ export default {
                 name="title"
                 id="title"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                v-model="book.title"
+                v-model="bookAdd.title"
                 required=""
               />
             </div>
@@ -132,7 +132,7 @@ export default {
                 type="text"
                 name="author"
                 id="author"
-                v-model="book.author"
+                v-model="bookAdd.author"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required=""
               />
@@ -147,7 +147,7 @@ export default {
                 type="textarea"
                 name="description"
                 id="description"
-                v-model="book.description"
+                v-model="bookAdd.description"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required=""
               />
@@ -162,7 +162,7 @@ export default {
                 type="text"
                 name="img"
                 id="img"
-                v-model="book.img"
+                v-model="bookAdd.img"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required=""
               />
@@ -177,7 +177,7 @@ export default {
                 type="text"
                 name="year"
                 id="year"
-                v-model="book.year"
+                v-model="bookAdd.year"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required=""
               />
@@ -192,7 +192,7 @@ export default {
                 type="text"
                 name="price"
                 id="price"
-                v-model="book.price"
+                v-model="bookAdd.price"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required=""
               />
@@ -219,6 +219,9 @@ export default {
     </div>
   </div>
   -->
+  
+
+-->
   <section class="m-6 grid justify-items-center text-2xl">
     <h1 class="font-serif text-xl font-bold m-6">COLECCIÓN DE LIBROS</h1>
   </section>
