@@ -3,13 +3,15 @@ import BookService from "../service/BookService";
 import CardBook from "./CardBook.vue";
 import SaveBook from "./SaveBook.vue";
 import ShowBook from "./ShowBook.vue";
+import AddBook from "./AddBook.vue";
 export default {
   name: "ListBook",
   data() {
     return {
       books: null,
-      book:"",
-      bookAdd: {
+      book: "",
+      bookSave: {
+        id: null,
         title: null,
         author: null,
         description: null,
@@ -28,20 +30,11 @@ export default {
   mounted() {
     this.getAll();
   },
-  components: { CardBook, SaveBook, ShowBook },
+  components: { CardBook, SaveBook, ShowBook, AddBook },
   methods: {
     getAll() {
       this.bookService.getAll().then((data) => {
         this.books = data.data;
-      });
-    },
-    create() {
-      this.bookService.save(this.bookAdd).then((data) => {
-        if (data.status === 200) {
-          console.log(this.bookAdd)
-          this.getAll();
-          return "/";
-        }
       });
     },
     bookInsert: function (book) {
@@ -69,159 +62,32 @@ export default {
         }
       });
     },
+    edit(book) {
+      this.bookSave.id = book.id;
+      this.bookSave.title = book.title;
+      this.bookSave.author = book.author;
+      this.bookSave.description = book.description;
+      this.bookSave.img = book.img;
+      this.bookSave.year = book.year;
+      this.bookSave.price = book.price;
+      console.log(this.bookSave);
+    },
+    store() {
+      this.bookService.update(this.bookSave, this.bookSave.id).then((data) => {
+        if (data.status === 200) {
+          console.log(this.bookSave);
+          this.getAll();
+          return "/";
+        }
+      });
+    },
   },
 };
 </script>
 
 <template>
-  <div
-    id="add-modal"
-    tabindex="-1"
-    aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
-  >
-    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <button
-          type="button"
-          class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-          data-modal-toggle="add-modal"
-        >
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="sr-only">Close modal</span>
-        </button>
-        <div class="py-6 px-6 lg:px-8">
-          <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-            Agregar libro
-          </h3>
-          <form @submit.prevent="create" class="space-y-6">
-            <div>
-              <label
-                for="title"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Titulo del libro</label
-              >
-              <input
-                type="text"
-                name="title"
-                id="title"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                v-model="bookAdd.title"
-                required=""
-              />
-            </div>
-            <div>
-              <label
-                for="author"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Autor del libro</label
-              >
-              <input
-                type="text"
-                name="author"
-                id="author"
-                v-model="bookAdd.author"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required=""
-              />
-            </div>
-            <div>
-              <label
-                for="description"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >descripcion del libro</label
-              >
-              <input
-                type="textarea"
-                name="description"
-                id="description"
-                v-model="bookAdd.description"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required=""
-              />
-            </div>
-            <div>
-              <label
-                for="img"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Url imagen portada del libro</label
-              >
-              <input
-                type="text"
-                name="img"
-                id="img"
-                v-model="bookAdd.img"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required=""
-              />
-            </div>
-            <div>
-              <label
-                for="year"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Año de edición</label
-              >
-              <input
-                type="text"
-                name="year"
-                id="year"
-                v-model="bookAdd.year"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required=""
-              />
-            </div>
-            <div>
-              <label
-                for="price"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Precio</label
-              >
-              <input
-                type="text"
-                name="price"
-                id="price"
-                v-model="bookAdd.price"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required=""
-              />
-            </div>
-            <div class="p-6 text-center">
-              <button
-                data-modal-toggle="add-modal"
-                type="submit"
-                class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
-              >
-                Yes, I'm sure
-              </button>
-              <button
-                data-modal-toggle="add-modal"
-                type="button"
-                class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-              >
-                No, cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
-  
-
--->
+  <AddBook @bookInsert="bookInsert" />
+  --> -->
   <section class="m-6 grid justify-items-center text-2xl">
     <h1 class="font-serif text-xl font-bold m-6">COLECCIÓN DE LIBROS</h1>
   </section>
@@ -252,17 +118,20 @@ export default {
         :year="book.year"
         :book="book"
       />
-      <button
-        type="button"
-        class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-1 dark:bg-green-800 dark:hover:bg-blue-700 dark:focus:ring-green-800"
-        @click="bookEdit(book, index)"
-      >
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/3601/3601685.png"
-          alt="edit event"
-          class="w-5 h-auto p-0"
-        />
-      </button>
+      <form @submit.prevent="edit(book)">
+        <button
+          type="submit"
+          class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-1 dark:bg-green-800 dark:hover:bg-blue-700 dark:focus:ring-green-800"
+          data-bs-toggle="modal"
+          :data-bs-target="'#exampleModal' + book.id"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3601/3601685.png"
+            alt="edit event"
+            class="w-5 h-auto p-0"
+          />
+        </button>
+      </form>
       <form @submit.prevent="destroy(book)">
         <button
           type="submit"
@@ -275,13 +144,151 @@ export default {
           />
         </button>
       </form>
+      -->
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary">Launch demo modal</button>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        :id="'exampleModal' + book.id"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                <h2 class="mb-4 text-xl font-medium text-gray-900">
+                  Registrar productos
+                </h2>
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form @submit.prevent="store" class="space-y-6">
+              <div class="modal-body">
+                <div class="py-6 px-6 lg:px-8">
+                  <div>
+                    <label
+                      for="title"
+                      class="block mb-2 text-sm font-medium text-gray-900"
+                      >Titulo del libro</label
+                    >
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      v-model="bookSave.title"
+                      required=""
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="author"
+                      class="block mb-2 text-sm font-medium text-gray-900"
+                      >Autor del libro</label
+                    >
+                    <input
+                      type="text"
+                      name="author"
+                      id="author"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      v-model="bookSave.author"
+                      required=""
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="description"
+                      class="block mb-2 text-sm font-medium text-gray-900"
+                      >descripcion del libro</label
+                    >
+                    <input
+                      type="textarea"
+                      name="description"
+                      id="description"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      v-model="bookSave.description"
+                      required=""
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="img"
+                      class="block mb-2 text-sm font-medium text-gray-900"
+                      >Url imagen portada del libro</label
+                    >
+                    <input
+                      type="text"
+                      name="img"
+                      id="img"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      v-model="bookSave.img"
+                      required=""
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="year"
+                      class="block mb-2 text-sm font-medium text-gray-900"
+                      >Año de edición</label
+                    >
+                    <input
+                      type="text"
+                      name="year"
+                      id="year"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      v-model="bookSave.year"
+                      required=""
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="price"
+                      class="block mb-2 text-sm font-medium text-gray-900"
+                      >Precio</label
+                    >
+                    <input
+                      type="text"
+                      name="price"
+                      id="price"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      v-model="bookSave.price"
+                      required=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      -->
     </div>
   </div>
   <SaveBook
     :key="book"
     :bookUpdate="book"
     :bookEdit="book"
-    @bookInsert="bookInsert"
     @bookUpdate="bookUpdate"
   />
 </template>
