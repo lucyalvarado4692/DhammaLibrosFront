@@ -66,14 +66,14 @@ export default {
       </button>
     </a>
     <a href="">
-      <img class="rounded-t-lg p-0" :src="img" alt="" />
+      <img class="m-4 h-80 w-48" :src="img" alt="" />
     </a>
   </div>
   <div class="d-flex flex-column justify-content-end p-3">
     <div>
       <a href="#">
         <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-black">
-          {{ id }}-{{ title }}
+          {{ book.title }}
         </h2>
       </a>
       <p class="mb-1 text-black-700 dark:text-black-400">
@@ -82,16 +82,6 @@ export default {
       <p class="mb-1 text-black-700 dark:text-black-400">
         {{ price }}<i class="fas fa-euro-sign"></i>
       </p>
-    </div>
-
-    <div class="d-flex">
-      <a
-        href=""
-        class="me-auto items-center py-2 px-3 ml-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-blue-700 dark:focus:ring-red-800"
-      >
-        Añadir al carrito
-      </a>
-
     </div>
   </div>
 </template>
